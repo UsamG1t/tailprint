@@ -17,7 +17,7 @@ tailprint = "tailprint.__main__:main"
 dependencies = {file = ["requirements.txt"]}
 
 [tool.setuptools.packages.find]
-include = ["tailprint"]
+include = ["tailprint", "tailprint.*"]
 
 [tool.setuptools.package-data]
 tailprint = ["web/*.html", "web/*.js", "web/*.css"]

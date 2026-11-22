@@ -38,6 +38,22 @@ class HTTPTest(unittest.TestCase):
         finally:
             conn.close()
 
+    def test_web_assets_are_packaged(self):
+        for path, marker in [
+            ("/", b"TailPrint"),
+            ("/app.js", b"/api/jobs"),
+            ("/style.css", b".wordmark"),
+        ]:
+            with self.subTest(path=path):
+                conn = http.client.HTTPConnection("127.0.0.1", self.port, timeout=3)
+                try:
+                    conn.request("GET", path)
+                    response = conn.getresponse()
+                    self.assertEqual(response.status, 200)
+                    self.assertIn(marker, response.read())
+                finally:
+                    conn.close()
+
     def test_registration_and_catalog(self):
         self.assertEqual(self.request("GET", "/api/local")[0], 404)
         self.assertEqual(
