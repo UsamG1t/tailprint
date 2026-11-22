@@ -1,0 +1,8 @@
+site_name: TailPrint
+site_url: https://usamg1t.github.io/tailprint/
+repo_url: https://github.com/UsamG1t/tailprint
+theme:
+  name: mkdocs
+  locale: ru
+nav:
+  - Руководство: index.md
