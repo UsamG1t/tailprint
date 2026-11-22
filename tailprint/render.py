@@ -23,5 +23,7 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as exc:
+        if not sys.stderr.isatty():
+            sys.stderr.reconfigure(encoding="utf-8")
         print(str(exc)[:350] or "Не удалось подготовить документ.", file=sys.stderr)
         sys.exit(1)

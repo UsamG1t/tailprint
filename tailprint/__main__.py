@@ -41,6 +41,14 @@ def instance_lock(directory):
 
 
 def main():
+    if os.name == "nt":
+        for stream in (sys.stdout, sys.stderr):
+            if (
+                stream is not None
+                and not stream.isatty()
+                and hasattr(stream, "reconfigure")
+            ):
+                stream.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(
         description="TailPrint · печать документов в своей сети Tailscale"
     )
